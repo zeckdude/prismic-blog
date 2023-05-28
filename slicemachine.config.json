@@ -1,0 +1,5 @@
+{
+  "repositoryName": "prismic-test-chris-seckler",
+  "adapter": "@slicemachine/adapter-next",
+  "libraries": ["./slices"]
+}

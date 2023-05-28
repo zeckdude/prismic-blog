@@ -1,8 +1,9 @@
 import Head from 'next/head';
-import { Post } from '../components/Post';
+import Link from 'next/link';
 
 const posts = [
   {
+    date: new Date('2021-01-01'),
     slug: 'enchanting-world-of-monkeys',
     title: 'The Enchanting World of Monkeys: Our Primate Cousins',
     content: `### Introduction
@@ -11,6 +12,7 @@ Monkeys, captivating members of the primate family, have fascinated humans for c
 Monkeys' social dynamics and complex relationships are awe-inspiring. Living in troops or bands, these highly social animals form tight-knit communities that ensure their survival. Within these groups, hierarchies exist, offering protection against predators and ensuring access to resources. Communication plays a vital role in their interactions, as monkeys employ an astonishing range of vocalizations, facial expressions, and body language. Through these nuanced forms of communication, they convey emotions, share information about food sources or dangers, and maintain the cohesiveness of their groups. By delving deeper into the captivating lives of monkeys, we gain a greater appreciation for their intelligence and their unique contributions to the natural world.`,
   },
   {
+    date: new Date('2021-04-08'),
     slug: 'delving-into-wonders-of-dolphins',
     title: 'Delving into the Wonders of Dolphins: Marvels of the Ocean',
     content: `### Unveiling the Intriguing World of Dolphins
@@ -20,17 +22,19 @@ Dolphins' intelligence and cognitive abilities are truly remarkable. They posses
   },
 ];
 
-export default function Home() {
+export default function Archives() {
   return (
     <>
       <Head>
-        <title>Prismic Blog</title>
+        <title>Archives</title>
       </Head>
 
+      <h1 className="mb-8 text-3xl font-bold">Archives</h1>
       {posts.map((post) => (
-        <Post key={post.slug} slug={post.slug} title={post.title}>
-          {post.content}
-        </Post>
+        <div key={post.slug} className="flex justify-between not-last:mb-4">
+          <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+          <p className="text-sm text-gray-500">{post.date.toDateString()}</p>
+        </div>
       ))}
     </>
   );
